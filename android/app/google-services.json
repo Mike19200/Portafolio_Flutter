@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "931581618112",
+    "project_id": "portafolio-3d703",
+    "storage_bucket": "portafolio-3d703.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931581618112:android:564fe16636fab30cc98a25",
+        "android_client_info": {
+          "package_name": "com.example.portafolio_webapp_2026"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfVfKvLf9K-B4wvcNneZHE2qVxeIp6ks4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
