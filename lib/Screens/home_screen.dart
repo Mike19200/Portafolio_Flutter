@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio_webapp_2026/Screens/profile_screen_mobile.dart';
+import 'package:portafolio_webapp_2026/Screens/projects_section.dart';
 import 'package:portafolio_webapp_2026/models/video_model.dart';
 import 'package:portafolio_webapp_2026/services/video_services.dart';
 import 'package:portafolio_webapp_2026/widgets/video_item.dart';
+import 'package:portafolio_webapp_2026/widgets/build_info_tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -67,15 +70,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             );
           } else {
-            // --- DISEÑO MOBILE ---
-            return _mobileSelectedIndex == 0
-                ? Stack(
-                    children: [
-                      _buildVideoPlayerArea(isDesktop: false), // Video en el fondo
-                      _buildMobileHeader(),                     // Header encima
-                    ],
-                  )
-                : const Center(child: Text("Otras secciones"));
+            if (_mobileSelectedIndex == 0) {
+              return Stack(
+                children: [
+                  _buildVideoPlayerArea(isDesktop: false),
+                  _buildMobileHeader(),
+                ],
+              );
+            } else if (_mobileSelectedIndex == 1) {
+              return ProjectsSection();
+            } else if (_mobileSelectedIndex == 2) {
+              return ProfileScreenMobile();
+            } else {
+              return const Center(child: Text("Sección no encontrada"));
+            }
           }
         },
       ),
@@ -101,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const CircleAvatar(
                   radius: 18,
-                  backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                  backgroundImage: AssetImage('lib/assets/img/profile_pic_asset.jpg'),
                 ),
                 const SizedBox(width: 10),
                 Column(
@@ -236,10 +244,9 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(fontSize: 14, height: 1.5, color: Colors.white70),
           ),
           const SizedBox(height: 30),
-          _buildInfoTile(Icons.email, "Miguel.angel.mogollon@hotmail.com"),
-          _buildInfoTile(Icons.code,
-              "Flutter, Dart, Firebase, Javascript, HTML/CSS, Kotlin, Lua Roblox, Verse UEFN"),
-          _buildInfoTile(Icons.link, "github.com/Mike19200"),
+          BuildInfoTile(icon: Icons.email, text: "Miguel.angel.mogollon@hotmail.com"),
+          BuildInfoTile(icon: Icons.code, text: "Flutter, Dart, Firebase, Javascript, HTML/CSS, Kotlin, Lua Roblox, Verse UEFN"),
+          BuildInfoTile(icon: Icons.link, text: "github.com/Mike19200"),
         ],
       ),
     );
@@ -267,28 +274,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildInfoTile(IconData icon, String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12.0),
-      child: Container(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: Colors.grey, size: 20),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                text,
-                style: const TextStyle(color: Colors.white70),
-                softWrap: true,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

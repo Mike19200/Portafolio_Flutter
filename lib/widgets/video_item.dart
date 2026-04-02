@@ -16,6 +16,7 @@ class _VideoItemState extends State<VideoItem> {
   final VideoService _videoService = VideoService();
   late int _currentLikes;
   bool _isInitialized = false;
+  bool _isLiked = false;
 
   @override
   void initState() {
@@ -132,27 +133,26 @@ class _VideoItemState extends State<VideoItem> {
             ),
           ),
 
-          // 4. BOTONES DE ACCIÓN (Lateral derecho)
           Align(
-            alignment: Alignment.centerRight,
+            alignment: Alignment.bottomRight,
             child: Container(
               margin: const EdgeInsets.only(right: 15, bottom: 55),
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 8),
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(30),
-              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   _buildActionButton(
                     icon: Icons.favorite,
                     label: _currentLikes.toString(),
-                    color: Colors.redAccent,
+                    color: _isLiked ? Colors.redAccent : Colors.white.withOpacity(0.7),
                     onTap: () async {
+                      if (_isLiked) return; 
+          
                       setState(() {
+                        _isLiked = true;
                         _currentLikes++;
                       });
+          
                       await _videoService.likeVideo(widget.video.id);
                     },
                   ),
@@ -160,7 +160,7 @@ class _VideoItemState extends State<VideoItem> {
                   _buildActionButton(
                     icon: Icons.info_outline,
                     label: "Info",
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.7),
                     onTap: () => _showDescriptionSheet(context),
                   ),
                 ],
@@ -187,13 +187,12 @@ class _VideoItemState extends State<VideoItem> {
           children: [
             Container(
               padding: const EdgeInsets.all(12),
-              decoration: const BoxDecoration(
-                color: Colors.black54,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(icon, color: color, size: 30),
+              //decoration: const BoxDecoration(
+              //  color: Colors.black54,
+              //  shape: BoxShape.circle,
+              //),
+              child: Icon(icon, color: color, size: 30, shadows: [Shadow(blurRadius: 15, color: Colors.black)],),
             ),
-            const SizedBox(height: 4),
             Text(
               label,
               style: const TextStyle(
