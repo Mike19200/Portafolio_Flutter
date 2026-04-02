@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/video_model.dart';
 
 class VideoService {
-  // Aquí definiste '_firestore'
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<List<VideoModel>> getVideos() {
