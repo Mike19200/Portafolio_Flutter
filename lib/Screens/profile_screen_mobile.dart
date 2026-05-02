@@ -37,8 +37,9 @@ class ProfileScreenMobile extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
+          const SectionTitle(title: "Acerca de mí"),
           const Text(
-            "Hola! Me presento. Soy estudiante de Ingeniería en Diseño de Entretenimiento Digital y actualmente estoy en sexto semestre!\n"
+            "Hola, Soy Mike! Estudiante de Ingeniería en Diseño de Entretenimiento Digital y actualmente estoy en sexto semestre!\n"
             "Tengo 23 años, Soy Bilingue y, durante mis estudios, he adquirido experiencia en el campo del diseño gráfico y el desarrollo de software.\n"
             "He trabajado principalmente con Flutter y Firebase (Auth, Firestore y Hosting), AWS, Postman, Roblox (Lua), entre otros.\n"
             "Me destaco por estar siempre dispuesto a aprender nuevas tecnologias y mejorar mis conocimientos.\n",
@@ -62,9 +63,9 @@ class ProfileScreenMobile extends StatelessWidget {
           // Sección Habilidades (Expandida)
           const SectionTitle(title: "Habilidades"),
           BuildInfoTile(icon: Icons.language, text: "Inglés C1"),
-          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter/Dart (4 años)"),
+          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter/Dart"),
           BuildInfoTile(icon: Icons.storage, text: "Firebase & SQL"),
-          BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI (4 años)"),
+          BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI"),
           BuildInfoTile(icon: Icons.videogame_asset, text: "Unity / Roblox (Lua) / Verse UEFN"),
           BuildInfoTile(icon: Icons.code, text: "C# / HTML / CSS / JavaScript / Node.js / Swift / Kotlin"),
 

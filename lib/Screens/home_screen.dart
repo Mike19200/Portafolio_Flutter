@@ -224,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const CircleAvatar(
             radius: 50,
-            backgroundImage: NetworkImage('lib/assets/img/profile_pic_asset.jpg'),
+            backgroundImage: AssetImage('lib/assets/img/profile_pic_asset.jpg'),
           ),
           const SizedBox(height: 20),
           const Text(
@@ -236,13 +236,9 @@ class _HomeScreenState extends State<HomeScreen> {
             style: TextStyle(fontSize: 16, color: Colors.grey),
           ),
           const SizedBox(height: 30),
+          const SectionTitle(title: "Acerca de mí"),
           const Text(
-            "Acerca de mí",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            "Hola! Me presento. Soy estudiante de Ingeniería en Diseño de Entretenimiento Digital y actualmente estoy en sexto semestre!\n"
+            "Hola, Soy Mike! Estudiante de Ingeniería en Diseño de Entretenimiento Digital y actualmente estoy en sexto semestre!\n"
             "Tengo 23 años, Soy Bilingue y, durante mis estudios, he adquirido experiencia en el campo del diseño gráfico y el desarrollo de software.\n"
             "He trabajado principalmente con Flutter y Firebase (Auth, Firestore y Hosting), AWS, Postman, Roblox (Lua), entre otros.\n"
             "Me destaco por estar siempre dispuesto a aprender nuevas tecnologias y mejorar mis conocimientos.\n",
@@ -254,12 +250,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SectionTitle(title: "Habilidades"),
-          BuildInfoTile(icon: Icons.language, text: "Inglés B2"),
-          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter (4 años)"),
+          BuildInfoTile(icon: Icons.language, text: "Inglés C1"),
+          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter/Dart"),
           BuildInfoTile(icon: Icons.storage, text: "Firebase & SQL"),
-          BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI (4 años)"),
-          BuildInfoTile(icon: Icons.videogame_asset, text: "Unity & Roblox (Lua)"),
-          BuildInfoTile(icon: Icons.code, text: "C#, C++, JS, Node.js, Swift"),
+          BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI"),
+          BuildInfoTile(icon: Icons.videogame_asset, text: "Unity / Roblox (Lua) / Verse UEFN"),
+          BuildInfoTile(icon: Icons.code, text: "C# / HTML / CSS / JavaScript / Node.js / Swift / Kotlin"),
         ],
       ),
     );
