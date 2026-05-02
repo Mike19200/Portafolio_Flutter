@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio_webapp_2026/widgets/build_experience_card.dart';
 import 'package:portafolio_webapp_2026/widgets/build_info_tile.dart';
+import 'package:portafolio_webapp_2026/widgets/section_title.dart';
 
 class ProfileScreenMobile extends StatelessWidget {
   const ProfileScreenMobile({super.key});
@@ -28,7 +30,7 @@ class ProfileScreenMobile extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Text(
-            "Flutter Developer",
+            "Jr. Software Developer",
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey,
@@ -36,22 +38,48 @@ class ProfileScreenMobile extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           const Text(
-            "Soy desarrollador enfocado en Flutter y Firebase, creando apps modernas "
-            "con buen diseño y rendimiento. Me gusta construir productos reales "
-            "y mejorar constantemente mis habilidades.",
-            textAlign: TextAlign.center,
+            "Hola! Me presento. Soy estudiante de Ingeniería en Diseño de Entretenimiento Digital y actualmente estoy en sexto semestre!\n"
+            "Tengo 23 años, Soy Bilingue y, durante mis estudios, he adquirido experiencia en el campo del diseño gráfico y el desarrollo de software.\n"
+            "He trabajado principalmente con Flutter y Firebase (Auth, Firestore y Hosting), AWS, Postman, Roblox (Lua), entre otros.\n"
+            "Me destaco por estar siempre dispuesto a aprender nuevas tecnologias y mejorar mis conocimientos.\n",
+            textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: 14,
               height: 1.5,
-              color: Colors.white70,
+              color: Colors.white,
             ),
           ),
+
+          // Sección Experiencia (Nueva)
+          const SectionTitle(title: "Experiencia"),
+          BuildExperienceCard(role:"Software Developer Jr.", company: "Avenfor S.A.S", logoPath: 'lib/assets/img/Avenfor Logo.jpg'),
+          BuildExperienceCard(role: "Engineering Intern", company: "Karaokulta An Amber Studios", logoPath: 'lib/assets/img/Karaokulta Logo.jpg'),
+          BuildExperienceCard(role: "Roblox Developer", company: "Hitbox Studios", logoPath: 'lib/assets/img/Hitbox logo.jpg'),
+          BuildExperienceCard(role: "Payroll Specialist", company: "CCS Construction Staffing", logoPath: 'lib/assets/img/CCS Logo.jpg'),
+
           const SizedBox(height: 30),
-          BuildInfoTile(icon: Icons.email, text: "miguel@email.com"),
-          BuildInfoTile(icon: Icons.code, text: "Flutter, Firebase, Dart"),
+
+          // Sección Habilidades (Expandida)
+          const SectionTitle(title: "Habilidades"),
+          BuildInfoTile(icon: Icons.language, text: "Inglés B2"),
+          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter (4 años)"),
+          BuildInfoTile(icon: Icons.storage, text: "Firebase & SQL"),
+          BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI (4 años)"),
+          BuildInfoTile(icon: Icons.videogame_asset, text: "Unity & Roblox (Lua)"),
+          BuildInfoTile(icon: Icons.code, text: "C#, C++, JS, Node.js, Swift"),
+
+          const SizedBox(height: 30),
+
+          // Sección Contacto
+          const SectionTitle(title:"Contacto"),
+          BuildInfoTile(icon: Icons.location_on, text: "Medellín, Antioquia"),
+          BuildInfoTile(icon: Icons.email, text: "miguel.angel.mogollon@hotmail.com"),
           BuildInfoTile(icon: Icons.link, text: "github.com/Mike19200"),
         ],
       ),
     );
   }
+
+  // Widget auxiliar para títulos de sección
+
 }

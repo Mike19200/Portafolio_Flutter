@@ -3,6 +3,9 @@ import 'package:portafolio_webapp_2026/Screens/profile_screen_mobile.dart';
 import 'package:portafolio_webapp_2026/Screens/projects_section.dart';
 import 'package:portafolio_webapp_2026/models/video_model.dart';
 import 'package:portafolio_webapp_2026/services/video_services.dart';
+import 'package:portafolio_webapp_2026/widgets/build_contact_tile.dart';
+import 'package:portafolio_webapp_2026/widgets/build_experience_card.dart';
+import 'package:portafolio_webapp_2026/widgets/section_title.dart';
 import 'package:portafolio_webapp_2026/widgets/video_item.dart';
 import 'package:portafolio_webapp_2026/widgets/build_info_tile.dart';
 
@@ -221,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const CircleAvatar(
             radius: 50,
-            backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+            backgroundImage: NetworkImage('lib/assets/img/profile_pic_asset.jpg'),
           ),
           const SizedBox(height: 20),
           const Text(
@@ -239,14 +242,24 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 10),
           const Text(
-            "Desarrollador Fullstack creando experiencias increíbles en web y móvil. "
-            "Apasionado por Flutter, Firebase y el buen diseño UX/UI.",
-            style: TextStyle(fontSize: 14, height: 1.5, color: Colors.white70),
+            "Hola! Me presento. Soy estudiante de Ingeniería en Diseño de Entretenimiento Digital y actualmente estoy en sexto semestre!\n"
+            "Tengo 23 años, Soy Bilingue y, durante mis estudios, he adquirido experiencia en el campo del diseño gráfico y el desarrollo de software.\n"
+            "He trabajado principalmente con Flutter y Firebase (Auth, Firestore y Hosting), AWS, Postman, Roblox (Lua), entre otros.\n"
+            "Me destaco por estar siempre dispuesto a aprender nuevas tecnologias y mejorar mis conocimientos.\n",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontSize: 14,
+              height: 1.5,
+              color: Colors.white,
+            ),
           ),
-          const SizedBox(height: 30),
-          BuildInfoTile(icon: Icons.email, text: "Miguel.angel.mogollon@hotmail.com"),
-          BuildInfoTile(icon: Icons.code, text: "Flutter, Dart, Firebase, Javascript, HTML/CSS, Kotlin, Lua Roblox, Verse UEFN"),
-          BuildInfoTile(icon: Icons.link, text: "github.com/Mike19200"),
+          const SectionTitle(title: "Habilidades"),
+          BuildInfoTile(icon: Icons.language, text: "Inglés B2"),
+          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter (4 años)"),
+          BuildInfoTile(icon: Icons.storage, text: "Firebase & SQL"),
+          BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI (4 años)"),
+          BuildInfoTile(icon: Icons.videogame_asset, text: "Unity & Roblox (Lua)"),
+          BuildInfoTile(icon: Icons.code, text: "C#, C++, JS, Node.js, Swift"),
         ],
       ),
     );
@@ -266,10 +279,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Expanded(
             child: ListView(
               children: [
-                _buildProjectCard("App de Delivery", "Flutter & Node.js"),
-                _buildProjectCard("Clon de Spotify", "React Native"),
-                _buildProjectCard("Dashboard Financiero", "Vue.js & Firebase"),
-                _buildProjectCard("Portafolio Interactivo", "Flutter Web"),
+                const SectionTitle(title: "Experiencia"),
+                BuildExperienceCard(role: "Software Developer Jr.", company: "Avenfor S.A.S", logoPath: 'lib/assets/img/Avenfor Logo.jpg'),
+                BuildExperienceCard(role: "Engineering Intern", company: "Karaokulta An Amber Studios", logoPath: 'lib/assets/img/Karaokulta Logo.jpg'),
+                BuildExperienceCard(role: "Roblox Developer", company: "Hitbox Studios", logoPath: 'lib/assets/img/Hitbox logo.jpg'),
+                BuildExperienceCard(role: "Payroll Specialist", company: "CCS Construction Staffing", logoPath: 'lib/assets/img/CCS Logo.jpg'),
+                const SizedBox(height: 0),
+                const SectionTitle(title: "Contacto"),
+                BuildContactTile(icon: Icons.email, text: "Miguel.angel.mogollon@hotmail.com"),
+                BuildContactTile(icon: Icons.code, text: "Flutter, Dart, Firebase, Javascript, HTML/CSS, Kotlin, Lua Roblox, Verse UEFN"),
+                BuildContactTile(icon: Icons.link, text: "github.com/Mike19200"),
               ],
             ),
           ),
