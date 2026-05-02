@@ -106,29 +106,32 @@ class _VideoItemState extends State<VideoItem> {
                 color: Colors.black.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    widget.video.title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+              child: GestureDetector(
+                onTap: () => _showDescriptionSheet(context),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      widget.video.title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    widget.video.description,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
+                    const SizedBox(height: 6),
+                    Text(
+                      widget.video.description,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -187,16 +190,12 @@ class _VideoItemState extends State<VideoItem> {
           children: [
             Container(
               padding: const EdgeInsets.all(12),
-              //decoration: const BoxDecoration(
-              //  color: Colors.black54,
-              //  shape: BoxShape.circle,
-              //),
-              child: Icon(icon, color: color, size: 30, shadows: [Shadow(blurRadius: 15, color: Colors.black)],),
+              child: Icon(icon, color: color, size: 30, shadows: [Shadow(blurRadius: 15, color: Colors.black, offset: Offset(2.0, 2.0),)],),
             ),
             Text(
               label,
               style: const TextStyle(
-                color: Colors.white,
+                color: Color.fromARGB(255, 120, 120, 120),
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
               ),

@@ -20,7 +20,7 @@ class PortafolioApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mi Portafolio TikTok',
+      title: 'Portafolio MikeDev',
       debugShowCheckedModeBanner: false,
       scrollBehavior: MyCustomScrollBehavior(),
       theme: ThemeData.dark().copyWith(

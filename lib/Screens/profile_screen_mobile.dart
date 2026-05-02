@@ -61,12 +61,12 @@ class ProfileScreenMobile extends StatelessWidget {
 
           // Sección Habilidades (Expandida)
           const SectionTitle(title: "Habilidades"),
-          BuildInfoTile(icon: Icons.language, text: "Inglés B2"),
-          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter (4 años)"),
+          BuildInfoTile(icon: Icons.language, text: "Inglés C1"),
+          BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter/Dart (4 años)"),
           BuildInfoTile(icon: Icons.storage, text: "Firebase & SQL"),
           BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI (4 años)"),
-          BuildInfoTile(icon: Icons.videogame_asset, text: "Unity & Roblox (Lua)"),
-          BuildInfoTile(icon: Icons.code, text: "C#, C++, JS, Node.js, Swift"),
+          BuildInfoTile(icon: Icons.videogame_asset, text: "Unity / Roblox (Lua) / Verse UEFN"),
+          BuildInfoTile(icon: Icons.code, text: "C# / HTML / CSS / JavaScript / Node.js / Swift / Kotlin"),
 
           const SizedBox(height: 30),
 
