@@ -9,7 +9,7 @@ class ProfileScreenMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -62,7 +62,7 @@ class ProfileScreenMobile extends StatelessWidget {
 
           // Sección Habilidades (Expandida)
           const SectionTitle(title: "Habilidades"),
-          BuildInfoTile(icon: Icons.language, text: "Inglés C1"),
+          BuildInfoTile(icon: Icons.language, text: "Inglés B2"),
           BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter/Dart"),
           BuildInfoTile(icon: Icons.storage, text: "Firebase & SQL"),
           BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI"),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio_webapp_2026/Screens/certificados_screen.dart';
 import 'package:portafolio_webapp_2026/Screens/profile_screen_mobile.dart';
 import 'package:portafolio_webapp_2026/Screens/projects_section.dart';
 import 'package:portafolio_webapp_2026/models/video_model.dart';
@@ -26,8 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: !isDesktop
           ? Container(
-              height: 70, // Aquí controlas la altura de la barra
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              height: 70,
+               // Aquí controlas la altura de la barra
+              padding: const EdgeInsets.symmetric(horizontal:15, vertical: 0),
               decoration: const BoxDecoration(
                 color: Colors.black,
                 border: Border(
@@ -39,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   _buildNeonNavItem(Icons.home, 'Home', 0),
                   _buildNeonNavItem(Icons.folder, 'Proyectos', 1),
+                  _buildNeonNavItem(Icons.workspace_premium, 'Certificados', 3),
                   _buildNeonNavItem(Icons.person, 'Perfil', 2),
                 ],
               ),
@@ -84,6 +87,8 @@ class _HomeScreenState extends State<HomeScreen> {
               return ProjectsSection();
             } else if (_mobileSelectedIndex == 2) {
               return ProfileScreenMobile();
+            } else if (_mobileSelectedIndex == 3) {
+              return CertificadosScreenMobile();
             } else {
               return const Center(child: Text("Sección no encontrada"));
             }
@@ -125,16 +130,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        shadows: [Shadow(blurRadius: 10, color: Colors.black)],
+                        //shadows: [Shadow(blurRadius: 10, color: Colors.black)],
                       ),
                     ),
                     SizedBox(height: 2),
                     Text(
-                      "Developer & Creator",
+                      "Desarrollador",
                       style: TextStyle(
                         color: Colors.white70,
                         fontSize: 15,
-                        shadows: [Shadow(blurRadius: 10, color: Colors.black)],
+                        //adows: [Shadow(blurRadius: 10, color: Colors.black)],
                       ),
                     ),
                   ],
@@ -155,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: () => setState(() => _mobileSelectedIndex = index),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -250,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SectionTitle(title: "Habilidades"),
-          BuildInfoTile(icon: Icons.language, text: "Inglés C1"),
+          BuildInfoTile(icon: Icons.language, text: "Inglés B2"),
           BuildInfoTile(icon: Icons.flutter_dash, text: "Flutter/Dart"),
           BuildInfoTile(icon: Icons.storage, text: "Firebase & SQL"),
           BuildInfoTile(icon: Icons.brush, text: "Diseño UX/UI"),

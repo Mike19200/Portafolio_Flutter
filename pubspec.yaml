@@ -40,6 +40,7 @@ dependencies:
   firebase_core: ^4.5.0
   youtube_player_iframe: ^5.2.2
   pointer_interceptor: ^0.10.1+2
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,11 @@ flutter:
     - lib\assets\img\Hitbox logo.jpg
     - lib\assets\img\Karaokulta Logo.jpg  
     - lib\assets\img\Avenfor Logo.jpg
+    - lib\assets\img\certificado_flutter.jpg
+    - lib\assets\img\udemy_logo.png
+    - lib\assets\img\certificado_roblox.jpg
+    - lib\assets\img\certificado_ingles_b2.png
+    - lib\assets\img\efset_logo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
