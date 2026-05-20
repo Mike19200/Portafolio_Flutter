@@ -1,9 +1,46 @@
 import 'dart:math' as math;
+import 'dart:ui_web' as ui_web; 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:web/web.dart' as web; // Paquete estándar para manipular el DOM en web
 
-class JugarScreenMobile extends StatelessWidget {
+class JugarScreenMobile extends StatefulWidget {
   const JugarScreenMobile({super.key});
+
+  @override
+  State<JugarScreenMobile> createState() => _JugarScreenMobileState();
+}
+
+class _JugarScreenMobileState extends State<JugarScreenMobile> {
+  
+  @override
+  void initState() {
+    super.initState();
+    
+    // 2. Registramos el elemento HTML que contendrá el anuncio de AdSense
+    // Puedes cambiar 'ca-pub-XXXXXXXXXXXXXXXX' por tu ID real de AdSense
+    ui_web.platformViewRegistry.registerViewFactory(
+      'google-adsense-banner',
+      (int viewId) {
+        final insElement = web.document.createElement('ins') as web.HTMLModElement;
+        insElement.className = 'adsbygoogle';
+        insElement.style.display = 'block';
+        insElement.setAttribute('data-ad-client', 'ca-pub-5184877107526673'); // Tu ID de cliente
+        insElement.setAttribute('data-ad-slot', '5025096547'); // Tu ID de bloque de anuncio
+        insElement.style.width = '320px';
+        insElement.style.height = '50px';
+
+        final scriptElement = web.document.createElement('script') as web.HTMLScriptElement;
+        scriptElement.text = '(adsbygoogle = window.adsbygoogle || []).push({});';
+
+        final container = web.document.createElement('div') as web.HTMLDivElement;
+        container.append(insElement);
+        container.append(scriptElement);
+        
+        return container;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,13 +49,27 @@ class JugarScreenMobile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Jugar",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          //const Text(
+          //  "Jugar",
+          //  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          //),
+          const SizedBox(height: 15),
+          
+          // --- NUEVO: BANNER DE GOOGLE ADSENSE PARA WEB ---
+          Center(
+            child: Container(
+              width: 320,
+              height: 50,
+              color: Colors.grey[800], // Fondo mientras carga
+              child: const HtmlElementView(
+                viewType: 'google-adsense-banner',
+              ),
+            ),
           ),
+          // ------------------------------------------------
+
           const SizedBox(height: 20),
-          // Encapsulamos el juego para que no interfiera negativamente con el scroll
-          const CityBloxxMinigame(),
+          const CityBloxxMinigame(), // Tu juego limpio
         ],
       ),
     );
@@ -84,7 +135,7 @@ class _CityBloxxMinigameState extends State<CityBloxxMinigame> with SingleTicker
   void _updateGame() {
     if (!isDropping) {
       // Movimiento de balanceo usando seno
-      time += 0.02;
+      time += 0.035;
       // Ángulo de oscilación máximo (~35 grados)
       double angle = 0.6 * math.sin(time * 2.5); 
       
@@ -173,24 +224,25 @@ class _CityBloxxMinigameState extends State<CityBloxxMinigame> with SingleTicker
                 height: 500,
                 decoration: BoxDecoration(
                   color: Colors.grey[900],
-                  //borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.5), width: 3),
                 ),
                 child: Stack(
                   children: [
-                    // Render de los gráficos mediante CustomPaint
+                    // RESTRICCIÓN VISUAL: Agregamos ClipRect para evitar el desborde
                     Positioned.fill(
-                      child: CustomPaint(
-                        painter: GamePainter(
-                          pivotX: pivotX,
-                          currentBlockX: currentBlockX,
-                          currentBlockY: currentBlockY,
-                          isDropping: isDropping,
-                          ropeLength: ropeLength,
-                          blockWidth: blockWidth,
-                          blockHeight: blockHeight,
-                          floorY: floorY,
-                          stackedBlocksX: stackedBlocksX,
+                      child: ClipRect(
+                        child: CustomPaint(
+                          painter: GamePainter(
+                            pivotX: pivotX,
+                            currentBlockX: currentBlockX,
+                            currentBlockY: currentBlockY,
+                            isDropping: isDropping,
+                            ropeLength: ropeLength,
+                            blockWidth: blockWidth,
+                            blockHeight: blockHeight,
+                            floorY: floorY,
+                            stackedBlocksX: stackedBlocksX,
+                          ),
                         ),
                       ),
                     ),
@@ -309,7 +361,6 @@ class GamePainter extends CustomPainter {
     }
 
     // 3. Dibujar el bloque actual (en movimiento o cayendo)
-    // Centramos el dibujo del cuadrado usando su ancho y alto
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromLTWH(
@@ -327,8 +378,8 @@ class GamePainter extends CustomPainter {
     for (int i = 0; i < stackedBlocksX.length; i++) {
       double yPos = floorY - ((i + 1) * blockHeight);
       
-      // Evitamos dibujar bloques que ya se salieron de la parte superior del contenedor
-      if (yPos < -blockHeight) continue;
+      // Optimizamos: Evitamos procesar bloques que queden completamente fuera del recuadro visible
+      if (yPos > size.height || yPos < -blockHeight) continue;
 
       canvas.drawRRect(
         RRect.fromRectAndRadius(
@@ -346,6 +397,5 @@ class GamePainter extends CustomPainter {
   }
 
   @override
-  // Forzamos el redibujado continuo en cada ciclo del Ticker
   bool shouldRepaint(covariant GamePainter oldDelegate) => true;
 }
