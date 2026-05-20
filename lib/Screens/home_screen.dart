@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portafolio_webapp_2026/Screens/certificados_screen.dart';
+import 'package:portafolio_webapp_2026/Screens/game_screen.dart';
 import 'package:portafolio_webapp_2026/Screens/profile_screen_mobile.dart';
 import 'package:portafolio_webapp_2026/Screens/projects_section.dart';
 import 'package:portafolio_webapp_2026/models/video_model.dart';
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _buildNeonNavItem(Icons.home, 'Home', 0),
                   _buildNeonNavItem(Icons.folder, 'Proyectos', 1),
                   _buildNeonNavItem(Icons.workspace_premium, 'Certificados', 3),
+                  _buildNeonNavItem(Icons.sports_esports, 'Jugar', 4),
                   _buildNeonNavItem(Icons.person, 'Perfil', 2),
                 ],
               ),
@@ -89,6 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
               return ProfileScreenMobile();
             } else if (_mobileSelectedIndex == 3) {
               return CertificadosScreenMobile();
+              } else if (_mobileSelectedIndex == 4) {
+              return JugarScreenMobile();
             } else {
               return const Center(child: Text("Sección no encontrada"));
             }
