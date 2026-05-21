@@ -14,10 +14,12 @@ class CertificadosScreenMobile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-          "Certificados",
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
+          Center(
+            child: const Text(
+            "Certificados",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+          ),
         SizedBox(height: 20),
         Column(
           children: [

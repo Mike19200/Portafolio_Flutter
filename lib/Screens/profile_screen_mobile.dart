@@ -39,7 +39,7 @@ class ProfileScreenMobile extends StatelessWidget {
           const SizedBox(height: 20),
           const SectionTitle(title: "Acerca de mí"),
           const Text(
-            "Hola, Soy Mike! Estudiante de Ingeniería en Diseño de Entretenimiento Digital y actualmente estoy en sexto semestre!\n"
+            "Hola, Soy Mike! Estudiante de Ingeniería en Diseño de Entretenimiento Digital cursando sexto semestre!\n"
             "Tengo 23 años, Soy Bilingue y, durante mis estudios, he adquirido experiencia en el campo del diseño gráfico y el desarrollo de software.\n"
             "He trabajado principalmente con Flutter y Firebase (Auth, Firestore y Hosting), AWS, Postman, Roblox (Lua), entre otros.\n"
             "Me destaco por estar siempre dispuesto a aprender nuevas tecnologias y mejorar mis conocimientos.\n",

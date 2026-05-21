@@ -41,11 +41,11 @@ class CertificateCard extends StatelessWidget {
               // Contenedor con la imagen completa
               Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(0),
                   color: Colors.white,
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(0),
                   child: Image.asset(
                     certificateAsset,
                     fit: BoxFit.contain,
@@ -104,8 +104,8 @@ class CertificateCard extends StatelessWidget {
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(15),
                 topRight: Radius.circular(15),
-                bottomLeft: Radius.circular(5),
-                bottomRight: Radius.circular(5),
+                bottomLeft: Radius.circular(0),
+                bottomRight: Radius.circular(0),
               ),
               child: Image.asset(
                 certificateAsset,

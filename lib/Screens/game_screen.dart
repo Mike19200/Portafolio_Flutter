@@ -46,13 +46,10 @@ class _JugarScreenMobileState extends State<JugarScreenMobile> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 15),
-          
-          // --- BANNER DE GOOGLE ADSENSE ---
           Center(
             child: Container(
               width: 320,
@@ -65,10 +62,10 @@ class _JugarScreenMobileState extends State<JugarScreenMobile> {
           ),
           // ---------------------------------
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           const CityBloxxMinigame(), // El juego contiene el trigger de guardado
           
-          const SizedBox(height: 35),
+          const SizedBox(height: 5),
           
           // --- NUEVO: SECCIÓN SCOREBOARD SEPARADA ---
           Center(
