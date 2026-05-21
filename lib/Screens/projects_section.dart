@@ -79,7 +79,9 @@ class ProjectsSection extends StatelessWidget {
               extraInfo: extraInfo,
               imageUrl: imageUrl,
               showMoreButton: showMoreButton,
+              projectUrl: projectUrl,
               hasAdBanner: hasAdBanner,
+              cardColor: cardColor, // <-- Pasamos el color personalizado a la pantalla de detalles
             ),
           ),
         );
@@ -99,7 +101,7 @@ class ProjectsSection extends StatelessWidget {
               Container(
                 height: 200,
                 width: double.infinity,
-                child: Image.network(
+                child: Image.asset(
                   imageUrl,
                   fit: BoxFit.cover,
                 ),

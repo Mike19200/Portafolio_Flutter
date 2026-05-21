@@ -1,7 +1,9 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
+// Importación moderna oficial compatible con WebAssembly (reemplaza dart:html)
+import 'package:web/web.dart' as web;
 // Usamos esta importación para asegurar compatibilidad con la API de registro web en Flutter moderno
 import 'dart:ui_web' as ui_web;
 
@@ -12,7 +14,8 @@ class ProjectDetailScreen extends StatefulWidget {
   final String imageUrl;
   final bool showMoreButton;
   final String? projectUrl;  
-  final bool hasAdBanner; 
+  final bool hasAdBanner;
+  final Color cardColor; 
 
   const ProjectDetailScreen({
     Key? key,
@@ -21,6 +24,7 @@ class ProjectDetailScreen extends StatefulWidget {
     required this.extraInfo,
     required this.imageUrl,
     required this.showMoreButton,
+    required this.cardColor,
     this.projectUrl,
     this.hasAdBanner = false,
   }) : super(key: key);
@@ -36,19 +40,20 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
     super.initState();
     
     if (widget.hasAdBanner) {
-      // API actualizada para registrar vistas HTML en Flutter Web
+      // API de registro de vistas HTML adaptada para Wasm
       ui_web.platformViewRegistry.registerViewFactory(
         'adsense-banner-view',
         (int viewId) {
-          final element = html.DivElement()
+          // Creación de elemento usando package:web
+          final element = web.HTMLDivElement()
             ..style.width = '100%'
             ..style.height = '100%'
             ..style.display = 'flex'
             ..style.justifyContent = 'center'
             ..style.alignItems = 'center';
 
-          // Unificamos dimensiones internas a 320x50 para evitar conflictos con AdSense
-          element.innerHtml = '''
+          // SOLUCIÓN: Quitamos 'as JSAny' y usamos '.toJS' para convertir el String de Dart a JS de forma segura.
+          element.innerHTML = '''
             <ins class="adsbygoogle"
                  style="display:inline-block;width:320px;height:50px"
                  data-ad-client="ca-pub-5184877107526673" 
@@ -56,7 +61,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-          ''';
+          '''.toJS;
           
           return element;
         },
@@ -65,10 +70,18 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
   }
 
   Future<void> _launchURL() async {
-    if (widget.projectUrl == null || widget.projectUrl!.isEmpty) return;
+    if (widget.projectUrl == null || widget.projectUrl!.trim().isEmpty) {
+      debugPrint("ALERTA: No se puede abrir la URL porque está vacía en los datos del proyecto.");
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Este proyecto no tiene un enlace configurado.')),
+      );
+      return;
+    }
     
-    final Uri url = Uri.parse(widget.projectUrl!);
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+    final Uri url = Uri.parse(widget.projectUrl!.trim());
+    
+    if (!await launchUrl(url)) {
       throw Exception('No se pudo abrir la URL: ${widget.projectUrl}');
     }
   }
@@ -82,7 +95,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
           SliverAppBar(
             expandedHeight: 300.0,
             pinned: true,
-            backgroundColor: const Color(0xff545454),
+            backgroundColor: widget.cardColor,
             elevation: 0,
             leading: IconButton(
               icon: const Icon(Icons.arrow_back, size: 35, color: Color.fromARGB(255, 0, 0, 0)), 
@@ -90,7 +103,7 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
             ),
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              background: Image.network(
+              background: Image.asset(
                 widget.imageUrl,
                 fit: BoxFit.cover,
               ),
@@ -133,50 +146,50 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> {
                       color: Color.fromARGB(221, 224, 224, 224),
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 25),
                   
                   if (widget.showMoreButton) ...[
                     Center(
                       child: SizedBox(
-                        width: 200,
-                        height: 45,
+                        width: 180,
+                        height: 40,
                         child: ElevatedButton(
                           onPressed: _launchURL, 
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff2e7d32),
+                            backgroundColor: widget.cardColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                           ),
                           child: const Text(
-                            "Ver más",
+                            "Mira el Proyecto",
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 15),
                   ],
-                    Center(
-                    child: SizedBox(
-                      width: 150,
-                      height: 45,
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xff757575),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: const Text(
-                          "Regresar",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 50),
+                  //Center(
+                  //  child: SizedBox(
+                  //    width: 130,
+                  //    height: 35,
+                  //    child: ElevatedButton(
+                  //      onPressed: () => Navigator.pop(context),
+                  //      style: ElevatedButton.styleFrom(
+                  //        backgroundColor: const Color(0xff757575),
+                  //        shape: RoundedRectangleBorder(
+                  //          borderRadius: BorderRadius.circular(12),
+                  //        ),
+                  //      ),
+                  //      child: const Text(
+                  //        "Regresar",
+                  //        style: TextStyle(color: Colors.white, fontSize: 16),
+                  //      ),
+                  //    ),
+                  //  ),
+                  //),
+                  const SizedBox(height: 15),
                 ],
               ),
             ),
